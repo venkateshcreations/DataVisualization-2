@@ -1,0 +1,212 @@
+{
+  "name": "Enterprise Digital Transformation",
+  "children": [
+    {
+      "name": "Strategy & Leadership",
+      "children": [
+        {
+          "name": "Business Strategy",
+          "children": [
+            {"name": "Vision 2030"},
+            {"name": "Growth Objectives"},
+            {"name": "Market Expansion"},
+            {"name": "Revenue Optimization"},
+            {"name": "Customer Centricity"}
+          ]
+        },
+        {
+          "name": "Governance",
+          "children": [
+            {"name": "Steering Committee"},
+            {"name": "Transformation Office"},
+            {"name": "Risk Management"},
+            {"name": "Compliance"}
+          ]
+        },
+        {
+          "name": "KPIs",
+          "children": [
+            {"name": "Digital Revenue"},
+            {"name": "Customer Satisfaction"},
+            {"name": "Operational Efficiency"},
+            {"name": "Innovation Index"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Technology Transformation",
+      "children": [
+        {
+          "name": "Cloud Modernization",
+          "children": [
+            {"name": "AWS"},
+            {"name": "Azure"},
+            {"name": "Google Cloud"},
+            {"name": "Hybrid Cloud"},
+            {"name": "Multi Cloud"}
+          ]
+        },
+        {
+          "name": "Application Modernization",
+          "children": [
+            {"name": "Microservices"},
+            {"name": "API Management"},
+            {"name": "Containerization"},
+            {"name": "Kubernetes"},
+            {"name": "Serverless"}
+          ]
+        },
+        {
+          "name": "AI & Automation",
+          "children": [
+            {"name": "Generative AI"},
+            {"name": "Machine Learning"},
+            {"name": "Predictive Analytics"},
+            {"name": "Chatbots"},
+            {"name": "RPA"}
+          ]
+        },
+        {
+          "name": "Cyber Security",
+          "children": [
+            {"name": "Zero Trust"},
+            {"name": "IAM"},
+            {"name": "SOC"},
+            {"name": "Threat Intelligence"},
+            {"name": "Data Protection"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Data Transformation",
+      "children": [
+        {
+          "name": "Data Platforms",
+          "children": [
+            {"name": "Data Lake"},
+            {"name": "Data Warehouse"},
+            {"name": "Lakehouse"},
+            {"name": "Data Fabric"}
+          ]
+        },
+        {
+          "name": "Data Engineering",
+          "children": [
+            {"name": "ETL"},
+            {"name": "ELT"},
+            {"name": "Streaming"},
+            {"name": "Data Pipelines"}
+          ]
+        },
+        {
+          "name": "Data Governance",
+          "children": [
+            {"name": "Data Quality"},
+            {"name": "Metadata"},
+            {"name": "Master Data"},
+            {"name": "Privacy"}
+          ]
+        },
+        {
+          "name": "Analytics",
+          "children": [
+            {"name": "Business Intelligence"},
+            {"name": "Self Service Analytics"},
+            {"name": "Executive Dashboards"},
+            {"name": "Real Time Analytics"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Operations Transformation",
+      "children": [
+        {
+          "name": "Supply Chain",
+          "children": [
+            {"name": "Inventory Optimization"},
+            {"name": "Demand Forecasting"},
+            {"name": "Supplier Integration"},
+            {"name": "Logistics Automation"}
+          ]
+        },
+        {
+          "name": "Finance",
+          "children": [
+            {"name": "Digital Payments"},
+            {"name": "Financial Analytics"},
+            {"name": "Expense Automation"},
+            {"name": "Fraud Detection"}
+          ]
+        },
+        {
+          "name": "Human Resources",
+          "children": [
+            {"name": "Digital Recruitment"},
+            {"name": "Learning Platforms"},
+            {"name": "Employee Experience"},
+            {"name": "Workforce Analytics"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Customer Experience",
+      "children": [
+        {
+          "name": "Digital Channels",
+          "children": [
+            {"name": "Mobile Apps"},
+            {"name": "Web Portals"},
+            {"name": "Self Service"},
+            {"name": "Digital Commerce"}
+          ]
+        },
+        {
+          "name": "Customer Engagement",
+          "children": [
+            {"name": "Personalization"},
+            {"name": "Recommendation Engines"},
+            {"name": "Loyalty Programs"},
+            {"name": "Customer Journey"}
+          ]
+        },
+        {
+          "name": "Support",
+          "children": [
+            {"name": "Virtual Assistants"},
+            {"name": "Knowledge Base"},
+            {"name": "Omnichannel Support"},
+            {"name": "Case Management"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Innovation",
+      "children": [
+        {
+          "name": "Emerging Technologies",
+          "children": [
+            {"name": "Blockchain"},
+            {"name": "Digital Twins"},
+            {"name": "IoT"},
+            {"name": "Edge Computing"},
+            {"name": "Quantum Computing"}
+          ]
+        },
+        {
+          "name": "Innovation Programs",
+          "children": [
+            {"name": "Hackathons"},
+            {"name": "Innovation Labs"},
+            {"name": "Startup Partnerships"},
+            {"name": "Research Programs"}
+          ]
+        }
+      ]
+    }
+  ]
+}

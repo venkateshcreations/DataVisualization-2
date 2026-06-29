@@ -1,0 +1,27 @@
+{
+  "nodes": [
+    {"id":"Cloud"},
+    {"id":"AI"},
+    {"id":"Cybersecurity"},
+    {"id":"Data Lake"},
+    {"id":"Analytics"},
+    {"id":"Customer Experience"},
+    {"id":"RPA"},
+    {"id":"IoT"},
+    {"id":"Finance"},
+    {"id":"HR"}
+  ],
+  "links": [
+    {"source":"Cloud","target":"AI"},
+    {"source":"Cloud","target":"Data Lake"},
+    {"source":"Data Lake","target":"Analytics"},
+    {"source":"Analytics","target":"AI"},
+    {"source":"AI","target":"Customer Experience"},
+    {"source":"AI","target":"RPA"},
+    {"source":"Cybersecurity","target":"Cloud"},
+    {"source":"Cybersecurity","target":"Data Lake"},
+    {"source":"IoT","target":"Analytics"},
+    {"source":"Finance","target":"AI"},
+    {"source":"HR","target":"Analytics"}
+  ]
+}

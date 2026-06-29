@@ -1,0 +1,15 @@
+[
+  {"source":"Legacy Systems","target":"Cloud Migration","value":120},
+  {"source":"Cloud Migration","target":"Microservices","value":90},
+  {"source":"Microservices","target":"API Platform","value":75},
+  {"source":"API Platform","target":"Customer Portal","value":60},
+
+  {"source":"Customer Data","target":"Data Lake","value":150},
+  {"source":"Data Lake","target":"Analytics Platform","value":120},
+  {"source":"Analytics Platform","target":"AI Models","value":100},
+  {"source":"AI Models","target":"Business Insights","value":85},
+
+  {"source":"Manual Processes","target":"RPA","value":90},
+  {"source":"RPA","target":"Process Automation","value":75},
+  {"source":"Process Automation","target":"Operational Efficiency","value":65}
+]
