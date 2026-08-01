@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Documentation for the GlobalTech Industries Digital Transformation Intelligence Hub — 9 interconnected D3.js visualisations mapping the 2023–2027 digital transformation journey." />
+<meta name="author" content="Venkatesh Ammireddy" />
+<title>GlobalTech Industries — Documentation</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Spline+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060914;--bg2:#0d1220;--bg3:#131829;--bg4:#1a2035;--bg5:#202540;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--border3:rgba(255,255,255,0.22);
+  --text:#dde2f5;--text2:#7b83a6;--text3:#3d4460;
+  --purple:#8b7cf8;--purple2:#6c5ce7;--purple3:#4834d4;
+  --teal:#00d4a0;--teal2:#00a87e;
+  --amber:#f5a623;--coral:#ff6b8a;--coral2:#d4536e;
+  --blue:#4facfe;--green:#7ed56f;--pink:#f06dff;
+  --r:12px;--rl:18px;
+  --font-d:'Sora',-apple-system,'Segoe UI',system-ui,sans-serif;
+  --font-b:'Spline Sans',-apple-system,'Segoe UI',system-ui,sans-serif;
+  --font-m:'IBM Plex Mono',ui-monospace,monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
+::selection{background:rgba(139,124,248,.35);color:#fff}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(139,124,248,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(139,124,248,0.025) 1px,transparent 1px);
+  background-size:52px 52px;animation:gridshift 40s linear infinite}
+@keyframes gridshift{to{background-position:52px 52px}}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;opacity:0.15}
+.orb1{width:600px;height:600px;background:#4834d4;top:-150px;left:-150px;animation:f1 22s ease-in-out infinite}
+.orb2{width:450px;height:450px;background:#00a87e;bottom:-100px;right:-100px;animation:f2 28s ease-in-out infinite}
+.orb3{width:350px;height:350px;background:#d4536e;top:40%;left:40%;animation:f3 19s ease-in-out infinite}
+@keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,50px)}}
+@keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,-40px)}}
+@keyframes f3{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-44%,-56%)}}
+
+#progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:1000;background:linear-gradient(90deg,var(--purple),var(--teal));box-shadow:0 0 12px rgba(139,124,248,.6)}
+
+.site-header{position:sticky;top:0;z-index:300;background:rgba(6,9,20,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:1rem;padding:0 1.5rem;height:60px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none}
+.logo-mark{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;font-family:var(--font-d);background:linear-gradient(135deg,var(--purple2),var(--teal2));box-shadow:0 0 20px rgba(139,124,248,0.35)}
+.logo-name{font-size:14px;font-weight:700;color:var(--text);font-family:var(--font-d)}
+.logo-tag{font-size:9px;color:var(--text3);letter-spacing:.8px;text-transform:uppercase;font-family:var(--font-m)}
+.doc-nav{display:flex;gap:3px;flex:1;justify-content:center;overflow-x:auto;scrollbar-width:none}
+.doc-nav::-webkit-scrollbar{display:none}
+.nav-link{white-space:nowrap;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;color:var(--text2);background:transparent;border:1px solid transparent;cursor:pointer;transition:all .18s;font-family:var(--font-b);text-decoration:none}
+.nav-link:hover{background:var(--bg3);color:var(--text);border-color:var(--border2)}
+.nav-link.active{background:rgba(139,124,248,0.14);color:var(--purple);border-color:rgba(139,124,248,0.38);box-shadow:0 0 14px rgba(139,124,248,0.14)}
+.hdr-tools{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.live{display:flex;align-items:center;gap:5px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);animation:pls 2s ease-in-out infinite}
+.live-txt{font-size:10px;color:var(--teal);font-weight:700;letter-spacing:.6px;font-family:var(--font-m)}
+@keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
+
+.hero{max-width:1180px;margin:0 auto;padding:4.5rem 1.5rem 2.5rem;display:grid;grid-template-columns:1.5fr 1fr;gap:2.5rem;align-items:center}
+.hero-eyebrow{font-size:10px;font-weight:700;color:var(--purple);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;font-family:var(--font-m)}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--purple)}
+.hero-title{font-size:clamp(30px,4.2vw,52px);font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:16px;font-family:var(--font-d)}
+.accent{background:linear-gradient(135deg,var(--purple),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:14px;color:var(--text2);max-width:520px;line-height:1.75;margin-bottom:20px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:600;border:1px solid var(--border2);color:var(--text2);background:var(--bg3);cursor:default;transition:all .15s;font-family:var(--font-b)}
+.tag:hover{background:rgba(139,124,248,0.15);border-color:rgba(139,124,248,0.4);color:var(--purple)}
+
+.hero-side{display:grid;gap:12px;grid-auto-rows:1fr}
+.hero-spec{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:20px 22px;position:relative;overflow:hidden;transition:all .2s}
+.hero-spec:hover{transform:translateY(-2px);border-color:var(--border2)}
+.hero-spec::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--sc,var(--purple))}
+.hero-spec h4{font-size:9.5px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;font-family:var(--font-m);font-weight:600;margin-bottom:6px}
+.hero-spec p{font-size:12.5px;color:var(--text2)}
+.hero-spec strong{color:var(--text);font-weight:600}
+
+.section{padding:3.5rem 0}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.section-num{font-family:var(--font-m);font-size:11px;color:var(--purple);font-weight:600;letter-spacing:1px}
+.section-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+.section-title{font-family:var(--font-d);font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.6px;flex-shrink:0}
+.section-sub{font-size:12.5px;color:var(--text2);max-width:640px;margin:-14px 0 26px}
+
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden;transition:all .2s;cursor:default}
+.kpi:hover{transform:translateY(-2px);border-color:var(--border2)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--kc,var(--purple))}
+.kpi-n{font-size:24px;font-weight:800;color:var(--kc,var(--purple));letter-spacing:-1px;line-height:1;font-family:var(--font-d)}
+.kpi-d{font-size:9px;color:var(--teal);font-weight:600;margin-top:3px;font-family:var(--font-m)}
+.kpi-l{font-size:10px;color:var(--text2);margin-top:4px}
+
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.f-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:20px 20px 18px;position:relative;overflow:hidden;transition:all .2s;cursor:default}
+.f-card:hover{transform:translateY(-3px);border-color:var(--border2);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.f-card::before{content:'';position:absolute;inset:0;border-radius:var(--rl);background:linear-gradient(135deg,rgba(255,255,255,0.014),transparent);pointer-events:none}
+.f-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;background:var(--fc-bg,rgba(139,124,248,.12));border:1px solid var(--fc-bd,rgba(139,124,248,.25));margin-bottom:12px}
+.f-card h3{font-size:13px;font-weight:700;font-family:var(--font-d);margin-bottom:5px}
+.f-card p{font-size:11px;color:var(--text2);line-height:1.6}
+.f-card kbd{font-family:var(--font-m);font-size:9px;padding:1px 5px;border-radius:4px;background:var(--bg4);border:1px solid var(--border2);color:var(--text3);font-weight:500}
+
+.chart-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:18px;position:relative;overflow:hidden;transition:all .2s;cursor:default}
+.chart-card:hover{transform:translateY(-3px);border-color:var(--border2);box-shadow:0 10px 36px rgba(0,0,0,.35)}
+.chart-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--cc,var(--purple))}
+.chart-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.chart-name{font-family:var(--font-d);font-size:13px;font-weight:700}
+.chart-type{font-size:8.5px;font-weight:600;color:var(--cc,var(--purple));background:color-mix(in srgb,var(--cc,var(--purple)) 12%,transparent);border:1px solid color-mix(in srgb,var(--cc,var(--purple)) 28%,transparent);padding:2px 8px;border-radius:20px;font-family:var(--font-m);letter-spacing:.3px;white-space:nowrap}
+.chart-desc{font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:10px}
+.chart-id{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-m);font-size:9.5px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:2px 8px}
+.chart-id::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cc,var(--purple));box-shadow:0 0 6px var(--cc,var(--purple))}
+
+.data-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.data-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:18px;transition:all .2s;position:relative;overflow:hidden}
+.data-card:hover{transform:translateY(-3px);border-color:var(--border2)}
+.data-card .file-icon{font-size:20px;margin-bottom:10px}
+.data-card .file-name{font-family:var(--font-m);font-size:11px;color:var(--text);font-weight:500;line-height:1.5;word-break:break-word;margin-bottom:8px}
+.data-card .file-desc{font-size:10.5px;color:var(--text2);line-height:1.6}
+.data-badge{display:inline-block;margin-top:10px;font-size:8.5px;font-weight:600;color:var(--teal);background:rgba(0,212,160,.1);border:1px solid rgba(0,212,160,.25);padding:2px 8px;border-radius:20px;font-family:var(--font-m);letter-spacing:.4px}
+.data-badge.mono{color:var(--purple);background:rgba(139,124,248,.12);border-color:rgba(139,124,248,.3)}
+.data-badge.coral{color:var(--coral);background:rgba(255,107,138,.1);border-color:rgba(255,107,138,.25)}
+
+.usage-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;counter-reset:step}
+.step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:22px 20px;position:relative;overflow:hidden;transition:all .2s}
+.step:hover{transform:translateY(-3px);border-color:var(--border2)}
+.step::before{counter-increment:step;content:"0" counter(step);position:absolute;top:14px;right:16px;font-family:var(--font-m);font-size:22px;font-weight:600;color:rgba(139,124,248,.18)}
+.step h3{font-family:var(--font-d);font-size:13px;font-weight:700;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.step p{font-size:11px;color:var(--text2);line-height:1.65}
+.code-inline{font-family:var(--font-m);font-size:10px;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:1px 6px;color:var(--teal)}
+
+.shortcut-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sc-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:all .15s}
+.sc-item:hover{border-color:var(--border2);background:var(--bg3)}
+.sc-name{font-size:11px;color:var(--text2)}
+.sc-keys{display:flex;gap:4px}
+kbd{font-family:var(--font-m);font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:5px;background:var(--bg4);border:1px solid var(--border2);border-bottom-width:2px;color:var(--text);white-space:nowrap}
+kbd.grad{background:linear-gradient(135deg,rgba(139,124,248,.2),rgba(0,212,160,.15));border-color:rgba(139,124,248,.35);color:#fff}
+
+.site-footer{margin-top:2rem;border-top:1px solid var(--border);padding:2rem 0;position:relative;z-index:1}
+.footer-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-left{display:flex;align-items:center;gap:10px}
+.footer-left .logo-mark{width:30px;height:30px;font-size:11px}
+.footer-meta{font-size:10px;color:var(--text3)}
+.footer-meta a{color:var(--purple);text-decoration:none}
+.footer-meta a:hover{text-decoration:underline}
+.footer-tag{font-family:var(--font-m);font-size:9px;color:var(--text3);letter-spacing:1px;text-transform:uppercase}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:none}
+
+.back-top{position:fixed;bottom:24px;right:24px;z-index:299;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--purple2),var(--purple));color:#fff;border:none;cursor:pointer;font-size:17px;box-shadow:0 4px 20px rgba(108,92,231,.5);opacity:0;pointer-events:none;transition:all .25s;font-family:var(--font-d)}
+.back-top.show{opacity:1;pointer-events:auto}
+.back-top:hover{transform:translateY(-3px) scale(1.05)}
+
+@media(max-width:980px){.hero{grid-template-columns:1fr}.kpi-row{grid-template-columns:repeat(2,1fr)}.feature-grid,.chart-grid,.data-cards,.usage-steps,.shortcut-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.kpi-row,.feature-grid,.chart-grid,.data-cards,.usage-steps,.shortcut-grid{grid-template-columns:1fr}.hero{padding-top:3rem}}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+<div id="progress"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">GT</div>
+      <div><div class="logo-name">GlobalTech Industries</div><div class="logo-tag">Documentation</div></div>
+    </a>
+    <nav class="doc-nav" id="doc-nav">
+      <a class="nav-link active" href="#overview">Overview</a>
+      <a class="nav-link" href="#features">Features</a>
+      <a class="nav-link" href="#charts">Charts</a>
+      <a class="nav-link" href="#datasets">Datasets</a>
+      <a class="nav-link" href="#usage">Usage</a>
+    </nav>
+    <div class="hdr-tools">
+      <div class="live"><div class="live-dot"></div><div class="live-txt">v7 · LIVE</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Enterprise Portfolio · D3.js v7 · 2023 → 2027</div>
+    <h1 class="hero-title">Digital Transformation<br><span class="accent">Intelligence Hub</span></h1>
+    <p class="hero-desc">An interactive enterprise portfolio dashboard built with <strong style="color:var(--text)">D3.js v7</strong> featuring <strong style="color:var(--teal)">9 interconnected data visualisations</strong> that map GlobalTech Industries' digital transformation journey from 2023 to 2027.</p>
+    <div class="hero-tags">
+      <span class="tag">Strategy</span>
+      <span class="tag">Technology</span>
+      <span class="tag">Data</span>
+      <span class="tag">Operations</span>
+      <span class="tag">Customer</span>
+      <span class="tag">Innovation</span>
+      <span class="tag" style="color:var(--teal);border-color:rgba(0,212,160,.3);background:rgba(0,212,160,.08)">120+ initiatives</span>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="hero-spec" style="--sc:var(--purple)">
+      <h4>Concept</h4>
+      <p>One data-driven narrative across <strong>five transformation phases</strong> — from a legacy enterprise (2023) to an autonomous digital business (2027).</p>
+    </div>
+    <div class="hero-spec" style="--sc:var(--teal)">
+      <h4>Architecture</h4>
+      <p>Nine charts, one shared dataset, <strong>zero build step</strong>. D3.js v7 is loaded directly from CDN — open <strong>index.html</strong> in any modern browser.</p>
+    </div>
+    <div class="hero-spec" style="--sc:var(--amber)">
+      <h4>Interactivity</h4>
+      <p>Phase switching, search, filters, zoom, export, fullscreen and context menus — every visualisation is fully explorable.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="kpi-row reveal">
+    <div class="kpi" style="--kc:var(--purple)"><div class="kpi-n">120+</div><div class="kpi-d">INDEXED · SEARCHABLE</div><div class="kpi-l">Initiatives across all pillars</div></div>
+    <div class="kpi" style="--kc:var(--teal)"><div class="kpi-n">9</div><div class="kpi-d">INTERCONNECTED VIEWS</div><div class="kpi-l">D3.js chart types</div></div>
+    <div class="kpi" style="--kc:var(--amber)"><div class="kpi-n">5</div><div class="kpi-d">2023 → 2027</div><div class="kpi-l">Transformation phases</div></div>
+    <div class="kpi" style="--kc:var(--coral)"><div class="kpi-n">3</div><div class="kpi-d">JSON DATASETS</div><div class="kpi-l">No backend required</div></div>
+  </div>
+</div>
+
+<section class="section" id="overview">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">01 / OVERVIEW</span>
+      <span class="section-line"></span>
+      <h2 class="section-title">Why this dashboard exists</h2>
+    </div>
+    <p class="section-sub reveal">The Intelligence Hub turns a dense transformation programme into an explorable story. Six enterprise pillars — Strategy, Technology, Data, Operations, Customer and Innovation — are visualised as nine coordinated charts, each a different lens on the same journey.</p>
+    <div class="feature-grid">
+      <div class="f-card reveal" style="--fc-bg:rgba(139,124,248,.14);--fc-bd:rgba(139,124,248,.3)">
+        <div class="f-icon">◈</div>
+        <h3>9 D3.js charts</h3>
+        <p>Sankey, Sunburst, Circle Packing, Force Network, Treemap, Tangled Tree, Capability Heatmap, Revenue Line Chart, and Maturity Rings — each linked to a shared narrative.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(0,212,160,.14);--fc-bd:rgba(0,212,160,.3)">
+        <div class="f-icon">◉</div>
+        <h3>Multi-phase timeline</h3>
+        <p>A 5-year journey (2023–2027). Switch phase via the navigation bar, the timeline strip, or the keyboard arrows <kbd>←</kbd> <kbd>→</kbd> — every chart animates to the new phase.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(245,166,35,.14);--fc-bd:rgba(245,166,35,.3)">
+        <div class="f-icon">☾</div>
+        <h3>Dark theme</h3>
+        <p>Custom CSS variables drive the palette, an animated grid background adds depth, and ambient glow orbs give the workspace atmosphere.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(255,107,138,.14);--fc-bd:rgba(255,107,138,.3)">
+        <div class="f-icon">⛶</div>
+        <h3>Fullscreen mode</h3>
+        <p>Push any card to a floating, immersive viewport with a dedicated control bar. Press <kbd>Esc</kbd> to exit.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(79,175,254,.14);--fc-bd:rgba(79,175,254,.3)">
+        <div class="f-icon">⌕</div>
+        <h3>Search</h3>
+        <p>Press <kbd>⌘K</kbd> to instantly search 120+ initiatives across all pillars and jump to the matching chart.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(240,109,255,.14);--fc-bd:rgba(240,109,255,.3)">
+        <div class="f-icon">⚙</div>
+        <h3>Settings panel</h3>
+        <p>Live-tune the experience: accent colour, animation speed, per-card visibility, and the animated grid toggle.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(126,213,111,.14);--fc-bd:rgba(126,213,111,.3)">
+        <div class="f-icon">▤</div>
+        <h3>Card controls</h3>
+        <p>Collapse and expand cards, cycle through heights, export any chart as SVG, and reset zoom with one click.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(139,124,248,.14);--fc-bd:rgba(139,124,248,.3)">
+        <div class="f-icon">≋</div>
+        <h3>Layout modes</h3>
+        <p>Rebalance the workspace in <strong>Grid</strong>, <strong>List</strong>, or <strong>Focus</strong> layouts depending on what you are analysing.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(0,212,160,.14);--fc-bd:rgba(0,212,160,.3)">
+        <div class="f-icon">⚑</div>
+        <h3>Pillar filtering</h3>
+        <p>Filter the entire workspace by pillar — Strategy, Technology, Data, Operations, Customer, or Innovation — across every chart.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(245,166,35,.14);--fc-bd:rgba(245,166,35,.3)">
+        <div class="f-icon">↔</div>
+        <h3>Responsive</h3>
+        <p>A CSS Grid layout that adapts to the viewport — from a dense command-centre wall to a single-column mobile view.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(255,107,138,.14);--fc-bd:rgba(255,107,138,.3)">
+        <div class="f-icon">⋯</div>
+        <h3>Context menu</h3>
+        <p>Right-click any chart for quick actions: reset, zoom, export, or fullscreen — no toolbar hunting required.</p>
+      </div>
+      <div class="f-card reveal" style="--fc-bg:rgba(79,175,254,.14);--fc-bd:rgba(79,175,254,.3)">
+        <div class="f-icon">⇩</div>
+        <h3>Export</h3>
+        <p>Download individual SVGs or all nine charts at once, then drop them straight into a board or report.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="charts">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">02 / CHARTS</span>
+      <span class="section-line"></span>
+      <h2 class="section-title">The nine lenses</h2>
+    </div>
+    <p class="section-sub reveal">Each card is a first-class component with its own id, controls, legend and tooltip — wired to the shared dataset and phase state.</p>
+    <div class="chart-grid">
+      <div class="chart-card reveal" style="--cc:var(--purple)">
+        <div class="chart-head"><span class="chart-name">Sankey</span><span class="chart-type">FLOW</span></div>
+        <p class="chart-desc">Digital value flow across 3 streams — Technology, Data &amp; Operations — with stream filtering and thickness control.</p>
+        <span class="chart-id">#card-sankey</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--teal)">
+        <div class="chart-head"><span class="chart-name">Sunburst</span><span class="chart-type">HIERARCHY</span></div>
+        <p class="chart-desc">Programme taxonomy with click-to-zoom into pillars, domains and initiatives — plus continuous rotation.</p>
+        <span class="chart-id">#card-sunburst</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--amber)">
+        <div class="chart-head"><span class="chart-name">Circle Packing</span><span class="chart-type">SCOPE</span></div>
+        <p class="chart-desc">Scope map of the full portfolio. Drill down by clicking bubbles to reveal nested initiatives.</p>
+        <span class="chart-id">#card-circlepack</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--coral)">
+        <div class="chart-head"><span class="chart-name">Force Network</span><span class="chart-type">GRAPH</span></div>
+        <p class="chart-desc">Capability dependency graph with drag-and-drop, node pinning, and charge / link-distance control.</p>
+        <span class="chart-id">#card-force</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--blue)">
+        <div class="chart-head"><span class="chart-name">Treemap</span><span class="chart-type">INVESTMENT</span></div>
+        <p class="chart-desc">Investment map with drill-down navigation and switchable squarify / slice-dice tile algorithms.</p>
+        <span class="chart-id">#card-treemap</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--green)">
+        <div class="chart-head"><span class="chart-name">Tangled Tree</span><span class="chart-type">EVOLUTION</span></div>
+        <p class="chart-desc">Technology evolution from 2023 → 2027, with filtering by capability track across phases.</p>
+        <span class="chart-id">#card-tangled</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--pink)">
+        <div class="chart-head"><span class="chart-name">Capability Map</span><span class="chart-type">HEATMAP</span></div>
+        <p class="chart-desc">Maturity heatmap of every capability — switch between heat, number, and bar display modes.</p>
+        <span class="chart-id">#card-orgmap</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--purple)">
+        <div class="chart-head"><span class="chart-name">Revenue Chart</span><span class="chart-type">TREND</span></div>
+        <p class="chart-desc">Revenue and digital-growth line chart with callout annotations for each phase milestone.</p>
+        <span class="chart-id">#card-revenue</span>
+      </div>
+      <div class="chart-card reveal" style="--cc:var(--teal)">
+        <div class="chart-head"><span class="chart-name">Maturity Rings</span><span class="chart-type">GAUGES</span></div>
+        <p class="chart-desc">Pillar maturity ring gauges that animate whenever the active phase changes.</p>
+        <span class="chart-id">#card-rings</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="datasets">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">03 / DATASETS</span>
+      <span class="section-line"></span>
+      <h2 class="section-title">Data behind the story</h2>
+    </div>
+    <p class="section-sub reveal">Three lightweight JSON files ship with the dashboard. Every chart reads from one of them — no APIs, no backend.</p>
+    <div class="data-cards">
+      <div class="data-card reveal">
+        <div class="file-icon">🗂</div>
+        <div class="file-name">Enterprise Digital Transformation Journey Dataset.json</div>
+        <p class="file-desc">The master hierarchy — 6 pillars, 13 domains, and 120+ initiatives that drive the sunburst, treemap, circle packing and maturity views.</p>
+        <span class="data-badge">6 pillars</span><span class="data-badge mono">120+ nodes</span>
+      </div>
+      <div class="data-card reveal">
+        <div class="file-icon">🕸</div>
+        <div class="file-name">Force Network Relationships Dataset.json</div>
+        <p class="file-desc">The dependency graph — capability nodes and their interconnections, powering the force-directed network and tangled tree.</p>
+        <span class="data-badge coral">graph · edges</span>
+      </div>
+      <div class="data-card reveal">
+        <div class="file-icon">↗</div>
+        <div class="file-name">Additional Dataset for Sankey Diagram.json</div>
+        <p class="file-desc">The value flow model — investments and value moving across Technology, Data and Operations streams in the Sankey.</p>
+        <span class="data-badge mono">3 streams</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="usage">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">04 / USAGE</span>
+      <span class="section-line"></span>
+      <h2 class="section-title">Getting started</h2>
+    </div>
+    <div class="usage-steps">
+      <div class="step reveal">
+        <h3><span style="color:var(--purple)">1.</span> Open the dashboard</h3>
+        <p>Launch <span class="code-inline">index.html</span> in any modern browser. No build step required — D3.js v7 is loaded straight from CDN.</p>
+      </div>
+      <div class="step reveal">
+        <h3><span style="color:var(--teal)">2.</span> Explore the phases</h3>
+        <p>Step through 2023 → 2027 using the navigation bar, the timeline strip, or the <kbd>←</kbd> <kbd>→</kbd> arrow keys.</p>
+      </div>
+      <div class="step reveal">
+        <h3><span style="color:var(--amber)">3.</span> Dive into any chart</h3>
+        <p>Click nodes to drill down, hover for tooltips, right-click for context actions, and press <kbd>⌘K</kbd> to search across all pillars.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="shortcuts">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">05 / KEYBOARD</span>
+      <span class="section-line"></span>
+      <h2 class="section-title">Shortcut reference</h2>
+    </div>
+    <div class="shortcut-grid">
+      <div class="sc-item reveal"><span class="sc-name">Search initiatives</span><span class="sc-keys"><kbd class="grad">⌘K</kbd></span></div>
+      <div class="sc-item reveal"><span class="sc-name">Previous phase</span><span class="sc-keys"><kbd>←</kbd></span></div>
+      <div class="sc-item reveal"><span class="sc-name">Next phase</span><span class="sc-keys"><kbd>→</kbd></span></div>
+      <div class="sc-item reveal"><span class="sc-name">Exit fullscreen</span><span class="sc-keys"><kbd>Esc</kbd></span></div>
+      <div class="sc-item reveal"><span class="sc-name">Navigate results</span><span class="sc-keys"><kbd>↑</kbd><kbd>↓</kbd></span></div>
+      <div class="sc-item reveal"><span class="sc-name">Select result</span><span class="sc-keys"><kbd>↵</kbd></span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="logo-mark">GT</div>
+      <div>
+        <div class="logo-name">GlobalTech Industries</div>
+        <div class="footer-tag">Digital Transformation Intelligence Hub · Documentation</div>
+      </div>
+    </div>
+    <div class="footer-meta">Built with <strong style="color:var(--teal)">D3.js v7</strong> · 9 visualisations · 2023–2027</div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" title="Back to top">↑</button>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  const h=document.documentElement,sc=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  prog.style.width=(sc*100)+'%';
+  const bt=document.getElementById('backTop');
+  bt.classList.toggle('show',h.scrollTop>600);
+},{passive:true});
+
+document.getElementById('backTop').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+const links=[...document.querySelectorAll('.nav-link')];
+const secs=links.map(l=>document.querySelector(l.getAttribute('href')));
+const spy=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+  }
+}),{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>spy.observe(s));
+</script>
+</body>
+</html>
